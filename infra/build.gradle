@@ -1,0 +1,30 @@
+plugins {
+    id("application")
+    id("java")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'software.amazon.awscdk:apigatewayv2-alpha:2.44.0-alpha.0'
+    implementation 'software.amazon.awscdk:apigatewayv2-integrations-alpha:2.44.0-alpha.0'
+    implementation("software.amazon.awscdk:aws-cdk-lib:2.44.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
+}
+
+application {
+    mainClass.set("example.Main")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "software.amazon.awscdk:aws-cdk-lib:2.43.1"
+    }
+}
